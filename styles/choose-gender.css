@@ -1,0 +1,99 @@
+.choose-gender-container {
+    z-index: 100;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    display: grid;
+    place-items: center;
+
+    transition-property: opacity, transform;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.choose-gender-container.choose-gender-done {
+    z-index: -100;
+
+    opacity: 0;
+
+    transform: translateY(-1rem);
+    
+    pointer-events: none;
+}
+
+.choose-gender-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.choose-gender-title {
+    text-transform: uppercase;
+    text-align: center;
+
+    font-size: 2.5rem;
+    font-weight: 300;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+    letter-spacing: 0.125rem;
+}
+
+.choose-gender {
+    display: flex;
+
+    gap: 2rem;
+
+    max-height: 50%;
+}
+
+.choose-gender-card {
+    padding: 1rem;
+
+    max-width: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    user-select: none;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease-in-out;
+}
+
+.choose-gender-card:hover {
+    transform: scale(1.025);
+}
+
+.choose-gender-card > img {
+    object-fit: contain;
+
+    height: 90%;
+}
+
+.choose-gender-text {
+    text-transform: uppercase;
+    text-align: center;
+
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.choose-gender-separator {
+    width: 0.25rem;
+
+    background: black;
+
+    border-radius: 4px;
+}
