@@ -1,4 +1,4 @@
-import { persistedProgressKey, StorageManager } from "../manager/StorageManager";
+import { persistedProgressKey, StorageManager } from "../managers/StorageManager";
 import type { SkinInfo } from "../types";
 import { waitForClick } from "../utils/waitForClick";
 

@@ -4,13 +4,13 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "watch": "tsc -w -p tsconfig.node.json",
         "build": "webpack",
         "dev": "webpack --watch",
         "deploy": "vercel --prod",
         "serve": "serve ."
     },
     "devDependencies": {
+        "@types/three": "^0.149.0",
         "prettier": "^2.8.4",
         "serve": "^14.2.0",
         "ts-loader": "^9.4.1",
@@ -21,5 +21,8 @@
     "keywords": [],
     "author": "kelsny <cursors.owo.uwu@gmail.com>",
     "license": "MIT",
-    "main": "webpack.config.js"
+    "main": "webpack.config.js",
+    "dependencies": {
+        "three": "^0.149.0"
+    }
 }

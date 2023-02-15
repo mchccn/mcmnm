@@ -12,7 +12,6 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noUnusedParameters": true,
-        "exactOptionalPropertyTypes": true,
         "skipLibCheck": true,
         "sourceMap": true,
         "importsNotUsedAsValues": "error",
