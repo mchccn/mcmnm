@@ -39,7 +39,7 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
 
         this.scene = new THREE.Scene();
 
-        this.scene.background = new THREE.Color(0xaaaaaa);
+        this.scene.background = new THREE.Color(0xfafafa);
 
         this.camera.position.x = 0;
         this.camera.position.y = 16;

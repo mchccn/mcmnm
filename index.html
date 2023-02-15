@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="./styles/prelude.css" />
         <link rel="stylesheet" href="./styles/utility.css" />
         <link rel="stylesheet" href="./styles/choose-gender.css" />
+        <link rel="stylesheet" href="./styles/app-aside.css" />
+        <link rel="stylesheet" href="./styles/app.css" />
         <script src="./_/index.js" type="module"></script>
     </head>
     <body>
@@ -45,10 +47,16 @@
         </article>
         
         <article class="app-container">
+            <header>
+                <h1>mmnm</h1>
+                
+                <p>by <a class="made-by-anchor" href="#"></a></p>
+            </header>
+            
             <main class="app-wrapper">
                 <aside class="app-aside-container">
                     <section class="skin-displays">
-                        <canvas class="skin-model-preview"></canvas>
+                        <canvas class="skin-model-preview">your browser does not support canvas</canvas>
                         
                         <img class="skin-flat-preview" width="300" height="300" style="image-rendering: pixelated;" src="" />
                     </section>
@@ -59,7 +67,9 @@
                         <button class="skin-download-button">download</button>
                     </section>
                 </aside>
-            </main>
+                
+                <section class="core-app-container"></section>
+            </main>            
         </article>
     </body>
 </html>
