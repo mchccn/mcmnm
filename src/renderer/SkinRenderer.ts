@@ -23,14 +23,16 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
         this.canvas = canvas;
         this.image = image!;
 
-        this.camera = new THREE.PerspectiveCamera(70, 3 / 4, 0.1, 100);
+        this.camera = new THREE.PerspectiveCamera(75, 3 / 4, 0.1, 100);
 
         this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, logarithmicDepthBuffer: true });
 
         this.renderer.setPixelRatio(window.devicePixelRatio);
 
         this.controls = new OrbitControls(this.camera, this.canvas);
-
+        this.controls.enableDamping = false;
+        this.controls.enablePan = false;
+        this.controls.enableZoom = false;
         this.controls.target = new THREE.Vector3(0, 16, 0);
 
         this.renderer.setSize(300, 400);
