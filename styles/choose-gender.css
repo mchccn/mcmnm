@@ -1,6 +1,8 @@
 .choose-gender-container {
     z-index: 100;
 
+    background-color: white;
+
     position: fixed;
 
     top: 0;
@@ -22,7 +24,7 @@
     opacity: 0;
 
     transform: translateY(-1rem);
-    
+
     pointer-events: none;
 }
 

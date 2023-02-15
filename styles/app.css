@@ -1,0 +1,35 @@
+.app-container {
+    background-color: white;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 100vw;
+}
+
+.app-wrapper {
+    display: flex;
+
+    gap: 1rem;
+
+    width: calc(300px + 600px + 1rem);
+}
+
+.core-app-container {
+    flex: 1;
+
+    background: red; /**/
+}
+
+@media (max-width: 1080px) {
+    .app-wrapper {
+        width: calc(300px + 450px + 1rem);
+    }
+}
