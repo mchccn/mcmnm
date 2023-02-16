@@ -28,3 +28,5 @@ new TabsManager(document.querySelector<HTMLElement>(".core-app-container")!, [
 await renderer.use(`https://mineskin.eu/skin/${{ boy: "hiwell", girl: "aanh" }[skinInfo.gender]}`);
 
 renderer.start();
+
+alert(renderer.texture)
