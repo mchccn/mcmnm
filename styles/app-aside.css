@@ -20,12 +20,22 @@
     box-sizing: border-box;
 
     border: 1px solid #eeeeee;
+
+    user-select: none;
+
+    width: 300px;
+    height: 400px;
 }
 
 .skin-flat-preview {
     box-sizing: border-box;
 
     border: 1px solid #eeeeee;
+
+    user-select: none;
+
+    width: 300px;
+    height: 300px;
 }
 
 .action-buttons-container {
@@ -46,6 +56,8 @@
 
     padding: 0.25rem 0.5rem;
 
+    user-select: none;
+
     font-weight: 300;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
 
@@ -56,4 +68,20 @@
     border: 1px solid #eeeeee;
 
     background-color: #f5f5f5;
+}
+
+@media (max-width: 1024px) {
+    .app-aside-container {
+        width: 200px;
+    }
+
+    .skin-model-preview {
+        width: 200px !important;
+        height: calc(200px * 4 / 3) !important;
+    }
+
+    .skin-flat-preview {
+        width: 200px;
+        height: 200px;
+    }
 }
