@@ -1,19 +1,19 @@
 export const persistedProgressKey = "persistedProgress";
 
 export class StorageManager {
-    static readonly prefix = "kelsny.mmnm:";
+    static readonly prefix = "kelsny.mcmnm:";
 
     static readonly storage =
         typeof window !== "undefined"
             ? window.localStorage
-            : ({
+            : {
                   clear() {},
                   getItem: () => null,
                   key: () => null,
                   length: 0,
                   removeItem() {},
                   setItem() {},
-              } satisfies Storage);
+              };
 
     static set<T>(key: string, value: T): T {
         this.storage.setItem(this.prefix + key, JSON.stringify(value));
