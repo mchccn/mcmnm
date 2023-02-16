@@ -1,3 +1,4 @@
+import { persistedTabKey } from "./managers/StorageManager";
 import { TabsManager } from "./managers/TabsManager";
 import { SkinRenderer } from "./renderer/SkinRenderer";
 import { hydrateDownloadButton } from "./routines/hydrateDownloadButton";
@@ -22,7 +23,7 @@ new TabsManager(document.querySelector<HTMLElement>(".core-app-container")!, [
     new TabsManager.Tab("body", ["body"]),
     new TabsManager.Tab("arms", ["arms"]),
     new TabsManager.Tab("legs", ["legs"]),
-]);
+], { persistedWithKey: persistedTabKey });
 
 await renderer.use(`https://mineskin.eu/skin/${{ boy: "hiwell", girl: "aanh" }[skinInfo.gender]}`);
 

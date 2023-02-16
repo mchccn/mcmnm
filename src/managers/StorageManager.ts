@@ -1,4 +1,5 @@
 export const persistedProgressKey = "persistedProgress";
+export const persistedTabKey = "persistedTab";
 
 export class StorageManager {
     static readonly prefix = "kelsny.mcmnm:";
