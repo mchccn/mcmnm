@@ -1,6 +1,8 @@
 export async function loadImage(src: string) {
     const image = new Image();
     
+    image.crossOrigin = "anonymous";
+
     image.src = src;
     
     return new Promise<HTMLImageElement>((resolve, reject) => {

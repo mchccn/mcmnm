@@ -52,9 +52,9 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
         if (this.#model) this.#model.remove();
         if (this.#texture) this.#texture.dispose();
 
-        this.#texture = await new Promise<THREE.Texture>((resolve) => new THREE.TextureLoader().load(src, resolve));
+        if (this.image) this.image.src = src;
 
-        if (this.image) this.image.src = this.#texture.image.src;
+        this.#texture = await new Promise<THREE.Texture>((resolve) => new THREE.TextureLoader().load(src, resolve));
 
         this.#texture.magFilter = THREE.NearestFilter;
         this.#texture.minFilter = THREE.NearestFilter;
