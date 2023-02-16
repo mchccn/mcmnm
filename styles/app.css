@@ -62,7 +62,7 @@
 
 .core-app-container {
     flex: 1;
-    
+
     max-width: 600px;
 
     border: 1px solid #eeeeee;
@@ -72,7 +72,7 @@
     .app-group {
         width: calc(200px + 400px + 0.5rem);
     }
-    
+
     .core-app-container {
         max-width: 400px;
     }

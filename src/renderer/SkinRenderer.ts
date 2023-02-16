@@ -49,7 +49,7 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
     }
 
     async use(src: string) {
-        if (this.#model) this.#model.remove();
+        if (this.#model) this.scene.remove(this.#model);
         if (this.#texture) this.#texture.dispose();
 
         if (this.image) this.image.src = src;
