@@ -1,5 +1,5 @@
 .choose-gender-container {
-    z-index: 100;
+    z-index: 10;
 
     background-color: white;
 
@@ -19,8 +19,6 @@
 }
 
 .choose-gender-container.choose-gender-done {
-    z-index: -100;
-
     opacity: 0;
 
     transform: translateY(-1rem);

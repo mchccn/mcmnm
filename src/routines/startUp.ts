@@ -2,8 +2,14 @@ import { persistedProgressKey, StorageManager } from "../managers/StorageManager
 import type { SkinInfo } from "../types";
 import { waitForClick } from "../utils/waitForClick";
 
-function hideGenderSelection() {
-    document.querySelector(".choose-gender-container")!.classList.add("choose-gender-done");
+function hideGenderSelection(options?: { noTransition?: boolean }) {
+    const container = document.querySelector<HTMLElement>(".choose-gender-container")!;
+
+    if (options?.noTransition) container.style.transition = "none";
+
+    container.classList.add("choose-gender-done");
+
+    if (options?.noTransition) setTimeout(() => (container.style.transition = ""));
 }
 
 export async function startUp() {
@@ -16,12 +22,14 @@ export async function startUp() {
 
         hideGenderSelection();
 
-        StorageManager.set(persistedProgressKey, {
+        StorageManager.set<SkinInfo>(persistedProgressKey, {
             gender: choice === chooseBoy ? "boy" : "girl",
-        } satisfies SkinInfo);
-    } else {
-        hideGenderSelection();
+        });
 
-        // load skin info
+        return StorageManager.get<SkinInfo>(persistedProgressKey)!;
+    } else {
+        hideGenderSelection({ noTransition: true });
+
+        return progress;
     }
 }

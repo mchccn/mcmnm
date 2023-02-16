@@ -14,22 +14,60 @@
     width: 100vw;
 }
 
+.app-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.25rem;
+
+    width: calc(300px + 600px + 1rem);
+}
+
+.made-by-anchor {
+    color: black;
+
+    text-decoration: underline;
+}
+
+.app-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    user-select: none;
+
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.app-header > h1 {
+    margin: 0;
+
+    font-size: 2rem;
+    font-weight: 900;
+
+    letter-spacing: 1rem;
+}
+
+.app-header > p {
+    margin: 0;
+
+    font-weight: 300;
+}
+
 .app-wrapper {
     display: flex;
 
     gap: 1rem;
-
-    width: calc(300px + 600px + 1rem);
 }
 
 .core-app-container {
     flex: 1;
 
-    background: red; /**/
+    border: 1px solid #eeeeee;
 }
 
-@media (max-width: 1080px) {
-    .app-wrapper {
-        width: calc(300px + 450px + 1rem);
+@media (max-width: 1024px) {
+    .app-group {
+        width: calc(200px + 400px + 1rem);
     }
 }
