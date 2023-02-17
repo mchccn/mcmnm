@@ -13,6 +13,7 @@ export function composit(...layers: [ImageData, ...ImageData[]]) {
             buffer.data[i + 0] = l.data[i + 0];
             buffer.data[i + 1] = l.data[i + 1];
             buffer.data[i + 2] = l.data[i + 2];
+            buffer.data[i + 3] = l.data[i + 3];
         }
     }
 
