@@ -10,11 +10,6 @@ import { getImageData } from "./getImageData";
 import { loadImage } from "./loadImage";
 import { replaceColors } from "./replaceColors";
 
-//@ts-ignore
-globalThis.adjustColor = adjustColor;
-//@ts-ignore
-globalThis.difference = difference;
-
 const cache = new Map<string, ImageData>();
 
 export async function compile(skin: SkinInfo) {

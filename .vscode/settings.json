@@ -1,15 +1,4 @@
 {
-    // You are a monster if you use any of these settings.
-    // "typescript.inlayHints.enumMemberValues.enabled": true,
-    // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-    // "typescript.inlayHints.parameterNames.enabled": "all",
-    // "typescript.inlayHints.parameterTypes.enabled": true,
-    // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-    // "typescript.inlayHints.variableTypes.enabled": true,
-    // Weeb mode
-    // "typescript.locale": "ja",
     "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.disableAutomaticTypeAcquisition": true,
-    "lit-plugin.rules.no-boolean-in-attribute-binding": "off",
-    "lit-plugin.rules.no-incompatible-type-binding": "off"
+    "typescript.disableAutomaticTypeAcquisition": true
 }
