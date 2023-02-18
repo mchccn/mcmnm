@@ -9,6 +9,8 @@
     width: 100%;
 
     position: relative;
+
+    background-color: #ffffff;
 }
 
 .tab-content-container {
@@ -73,8 +75,42 @@
 .tab-system-tab > p {
     margin: 0;
 
+    user-select: none;
+
     text-transform: uppercase;
 
     font-weight: 500;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 640px) {
+    .tab-system-container {
+        height: 35px;
+    }
+
+    .tab-system-tab {
+        height: 35px;
+
+        padding: 0.5rem 1rem;
+    }
+
+    .tab-system-tab > p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 392px) {
+    .tab-system-container {
+        height: 30px;
+    }
+
+    .tab-system-tab {
+        height: 30px;
+
+        padding: 0.25rem 0.75rem;
+    }
+
+    .tab-system-tab > p {
+        font-size: 0.6rem;
+    }
 }

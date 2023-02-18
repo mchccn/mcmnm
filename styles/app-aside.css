@@ -85,3 +85,56 @@
         height: 200px;
     }
 }
+
+@media (max-width: 640px) {
+    .skin-model-preview {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        width: 100vw !important;
+        height: auto !important;
+    }
+
+    .skin-flat-preview {
+        display: none;
+    }
+
+    .action-buttons-container {
+        width: min-content;
+
+        position: fixed;
+
+        top: 3rem;
+        left: 0.5rem;
+
+        flex-direction: column;
+
+        gap: 0;
+    }
+
+    .action-buttons-container > * {
+        text-align: left;
+        text-decoration: underline;
+
+        width: min-content;
+
+        border: none;
+
+        background: transparent;
+    }
+
+    .action-buttons-container > *:hover {
+        border: none;
+
+        background: transparent;
+    }
+}
+
+@media (max-width: 392px) {
+    .action-buttons-container > * {
+        font-size: 0.8rem;
+    }
+}
