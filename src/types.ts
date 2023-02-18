@@ -1,4 +1,4 @@
-import type { PartName } from "./data/skinParts";
+import type { PartName } from "./parts";
 import type texturePositions from "./renderer/texturePositions";
 
 type Of<T, U extends T> = Extract<T, U>;

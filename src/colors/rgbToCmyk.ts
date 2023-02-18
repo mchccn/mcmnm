@@ -7,9 +7,9 @@ export function rgbToCmyk(rgb: number[]) {
 
     const k = Math.min(c, m, y);
 
-    c = (c - k) / (1 - k);
-    m = (m - k) / (1 - k);
-    y = (y - k) / (1 - k);
+    c = (c - k) / (1 - k) || 0;
+    m = (m - k) / (1 - k) || 0;
+    y = (y - k) / (1 - k) || 0;
 
     return [c, m, y, k];
 }

@@ -31,7 +31,7 @@ export class TabsManager {
 
     constructor(
         readonly container: HTMLElement,
-        readonly tabs: InstanceType<typeof TabsManager["Tab"]>[],
+        readonly tabs: InstanceType<(typeof TabsManager)["Tab"]>[],
         readonly options?: { persistedWithKey?: string },
     ) {
         this.tabsContainer.classList.add("tab-system-container");

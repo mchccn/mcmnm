@@ -50,16 +50,16 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
     }
 
     async use(src: string) {
-        if (this.#model) this.scene.remove(this.#model);
-        if (this.#texture) this.#texture.dispose();
-
-        if (this.image) this.image.src = src;
-
         this.#texture = await new Promise<THREE.Texture>((resolve) => new THREE.TextureLoader().load(src, resolve));
 
         this.#texture.magFilter = THREE.NearestFilter;
         this.#texture.minFilter = THREE.NearestFilter;
         this.#texture.anisotropy = 0;
+
+        if (this.#model) this.scene.remove(this.#model);
+        if (this.#texture) this.#texture.dispose();
+
+        if (this.image) this.image.src = src;
 
         this.#model = createPlayerModel(this.#texture);
 

@@ -34,8 +34,10 @@ export async function startUp() {
                 arms: choice === chooseBoy ? [] : ["exposed-shoulder-strap"],
                 legs: ["white-shoes"],
             },
-            meta:
+            meta: Object.assign(
+                { "skin-color": "#FFFFFF", highlight: true },
                 choice === chooseBoy ? {} : { "exposed-shoulder-strap": { primary: "#E0E0E0", secondary: "#C7C7C7" } },
+            ),
         });
 
         return StorageManager.get<SkinInfo>(persistedProgressKey)!;
