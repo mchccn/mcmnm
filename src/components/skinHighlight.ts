@@ -3,16 +3,16 @@ import type { SkinInfoManager } from "../managers/SkinInfoManager";
 import { debounce } from "../utils/debounce";
 
 export function createSkinHighlightComponent(skin: SkinInfoManager) {
-    const skinHighlightGroup = document.createElement("div");
+    const highlightGroup = document.createElement("div");
 
-    const skinHighlight = document.createElement("label");
-    skinHighlight.htmlFor = "skinHighlight";
-    skinHighlight.textContent = "highlight";
+    const highlight = document.createElement("label");
+    highlight.htmlFor = "skinHighlight";
+    highlight.textContent = "highlight";
 
-    const skinHighlightInput = document.createElement("select");
-    skinHighlightInput.name = "skinHighlight";
+    const highlightInput = document.createElement("select");
+    highlightInput.name = "skinHighlight";
 
-    skinHighlightInput.append(
+    highlightInput.append(
         ...["none", "auto", "custom"].map((text) => {
             const option = document.createElement("option");
 
@@ -24,51 +24,52 @@ export function createSkinHighlightComponent(skin: SkinInfoManager) {
     );
 
     const initial = skin.getMetadata("highlight");
-    skinHighlightInput.value =
+
+    highlightInput.value =
         typeof initial === "undefined" || initial === false ? "none" : initial === true ? "auto" : "custom";
 
-    skinHighlightInput.addEventListener("change", () => {
-        skinCustomHighlight.style.display = skinHighlightInput.value === "custom" ? "" : "none";
+    highlightInput.addEventListener("change", () => {
+        customHighlight.style.display = highlightInput.value === "custom" ? "" : "none";
 
-        if (skinHighlightInput.value === "none") {
+        if (highlightInput.value === "none") {
             return skin.setMetadata("highlight", false);
         }
 
-        if (skinHighlightInput.value === "auto") {
+        if (highlightInput.value === "auto") {
             return skin.setMetadata("highlight", true);
         }
 
         const highlight = calculateHighlight(skin.getCopy());
 
-        skinCustomHighlightInput.value = highlight;
+        customHighlightInput.value = highlight;
 
         return skin.setMetadata("highlight", highlight);
     });
 
-    skinHighlight.appendChild(skinHighlightInput);
+    highlight.appendChild(highlightInput);
 
-    const skinCustomHighlight = document.createElement("label");
-    skinCustomHighlight.htmlFor = "skinCustomHighlight";
-    skinCustomHighlight.textContent = "custom highlight color";
+    const customHighlight = document.createElement("label");
+    customHighlight.htmlFor = "skinCustomHighlight";
+    customHighlight.textContent = "custom highlight color";
 
-    skinCustomHighlight.style.display = typeof skin.getMetadata("highlight") === "string" ? "" : "none";
+    customHighlight.style.display = typeof skin.getMetadata("highlight") === "string" ? "" : "none";
 
-    const skinCustomHighlightInput = document.createElement("input");
-    skinCustomHighlightInput.name = "skinCustomHighlight";
-    skinCustomHighlightInput.type = "color";
-    skinCustomHighlightInput.value = skin.getMetadata("highlight");
+    const customHighlightInput = document.createElement("input");
+    customHighlightInput.name = "skinCustomHighlight";
+    customHighlightInput.type = "color";
+    customHighlightInput.value = skin.getMetadata("highlight");
 
-    skinCustomHighlightInput.addEventListener(
+    customHighlightInput.addEventListener(
         "input",
         debounce(() => {
-            skin.setMetadata("highlight", skinCustomHighlightInput.value);
+            skin.setMetadata("highlight", customHighlightInput.value);
         }, 100),
     );
 
-    skinCustomHighlight.appendChild(skinCustomHighlightInput);
+    customHighlight.appendChild(customHighlightInput);
 
-    skinHighlightGroup.appendChild(skinHighlight);
-    skinHighlightGroup.appendChild(skinCustomHighlight);
+    highlightGroup.appendChild(highlight);
+    highlightGroup.appendChild(customHighlight);
 
-    return skinHighlightGroup;
+    return highlightGroup;
 }
