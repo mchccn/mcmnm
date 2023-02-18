@@ -119,7 +119,6 @@ export default {
             w: 4,
             h: 4,
             sw: 3,
-            flipX: false,
         },
         bottom: {
             x: 40,
@@ -171,7 +170,6 @@ export default {
             w: 4,
             h: 4,
             sw: 3,
-            flipX: false,
         },
         bottom: {
             x: 48,
@@ -218,7 +216,6 @@ export default {
             y: 12,
             w: 4,
             h: 4,
-            flipX: false,
         },
         bottom: {
             x: 24,
@@ -262,7 +259,6 @@ export default {
             y: 44,
             w: 4,
             h: 4,
-            flipX: false,
         },
         bottom: {
             x: 8,

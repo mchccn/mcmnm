@@ -1,14 +1,8 @@
-import { createSkinColorComponent } from "./components/skinColor";
-import { createSkinHighlightComponent } from "./components/skinHighlight";
+import { createSkinColorComponent, createSkinHighlightComponent } from "./components";
 import { compile } from "./compositor/compile";
-import { SkinInfoManager } from "./managers/SkinInfoManager";
-import { persistedTabKey } from "./managers/StorageManager";
-import { TabsManager } from "./managers/TabsManager";
+import { SkinInfoManager, TabsManager, persistedTabKey } from "./managers";
 import { SkinRenderer } from "./renderer/SkinRenderer";
-import { hydrateDownloadButton } from "./routines/hydrateDownloadButton";
-import { hydrateResetButton } from "./routines/hydrateResetButton";
-import { renderMadeBy } from "./routines/renderMadeBy";
-import { startUp } from "./routines/startUp";
+import { hydrateDownloadButton, hydrateResetButton, renderMadeBy, startUp } from "./routines";
 
 renderMadeBy({ timeout: 250 });
 
@@ -33,10 +27,8 @@ new TabsManager(
     { persistedWithKey: persistedTabKey },
 );
 
-const rerender = async () => renderer.use((await compile(skin.getCopy())).src);
+const rerender = () => (compile(skin.getCopy()).then((image) => renderer.use(image.src)), rerender);
 
-rerender();
-
-skin.onChange(rerender);
+skin.onChange(rerender());
 
 renderer.start();
