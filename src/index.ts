@@ -1,3 +1,4 @@
+import { compile } from "./compositor/compile";
 import { composit } from "./compositor/composit";
 import { dataToImage } from "./compositor/dataToImage";
 import { getImageData } from "./compositor/getImageData";
@@ -10,9 +11,9 @@ import { hydrateResetButton } from "./routines/hydrateResetButton";
 import { renderMadeBy } from "./routines/renderMadeBy";
 import { startUp } from "./routines/startUp";
 
-const skinInfo = await startUp();
+renderMadeBy({ timeout: 250 });
 
-await renderMadeBy();
+const skinInfo = await startUp();
 
 const canvas = document.querySelector<HTMLCanvasElement>(".skin-model-preview")!;
 const image = document.querySelector<HTMLImageElement>(".skin-flat-preview")!;
@@ -22,15 +23,15 @@ const renderer = new SkinRenderer(canvas, image);
 hydrateResetButton();
 hydrateDownloadButton(renderer);
 
-const input = document.createElement("input");
-const button = document.createElement("button");
+const addInput = document.createElement("input");
+const addButton = document.createElement("button");
 
-input.placeholder = "username";
-button.textContent = "add";
+addInput.placeholder = "username";
+addButton.textContent = "add";
 
-button.addEventListener("click", async () => {
+addButton.addEventListener("click", async () => {
     try {
-        const image = await loadImage(`https://mineskin.eu/skin/${input.value}`);
+        const image = await loadImage(`https://mineskin.eu/skin/${addInput.value}`);
 
         const composited = await dataToImage(composit(getImageData(renderer.texture!.image), getImageData(image)));
 
@@ -40,10 +41,26 @@ button.addEventListener("click", async () => {
     }
 });
 
+const replaceInput = document.createElement("input");
+const replaceButton = document.createElement("button");
+
+replaceInput.placeholder = "username";
+replaceButton.textContent = "replace";
+
+replaceButton.addEventListener("click", async () => {
+    try {
+        const image = await loadImage(`https://mineskin.eu/skin/${replaceInput.value}`);
+
+        await renderer.use(image.src);
+    } catch (e) {
+        alert("Unable to load: " + e);
+    }
+});
+
 new TabsManager(
     document.querySelector<HTMLElement>(".core-app-container")!,
     [
-        new TabsManager.Tab("head", ["head", input, button]),
+        new TabsManager.Tab("head", ["head", addInput, addButton, replaceInput, replaceButton]),
         new TabsManager.Tab("body", ["body"]),
         new TabsManager.Tab("arms", ["arms"]),
         new TabsManager.Tab("legs", ["legs"]),
@@ -51,6 +68,6 @@ new TabsManager(
     { persistedWithKey: persistedTabKey },
 );
 
-await renderer.use(`https://mineskin.eu/skin/${{ boy: "hiwell", girl: "aanh" }[skinInfo.gender]}`);
+await renderer.use((await compile(skinInfo)).src);
 
 renderer.start();

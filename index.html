@@ -46,32 +46,39 @@
                 </main>
             </section>
         </article>
-        
+
         <article class="app-container">
             <section class="app-group">
                 <header class="app-header">
                     <h1>mcmnm</h1>
-                    
+
                     <p>by <a class="made-by-anchor" href="#"></a></p>
                 </header>
-                
+
                 <main class="app-wrapper">
                     <aside class="app-aside-container">
                         <section class="skin-displays">
                             <canvas class="skin-model-preview">your browser does not support canvas</canvas>
-                            
-                            <img class="skin-flat-preview" style="image-rendering: pixelated;" draggable="false" src="" />
+
+                            <img
+                                class="skin-flat-preview"
+                                style="image-rendering: pixelated"
+                                draggable="false"
+                                src=""
+                                onload="this.style.opacity = 1;"
+                                onerror="this.style.opacity = 0;"
+                            />
                         </section>
-                        
+
                         <section class="action-buttons-container">
                             <button class="skin-reset-button">reset</button>
                             <button class="skin-download-button">download</button>
                         </section>
                     </aside>
-                    
+
                     <section class="core-app-container"></section>
                 </main>
-            </section>  
+            </section>
         </article>
     </body>
 </html>

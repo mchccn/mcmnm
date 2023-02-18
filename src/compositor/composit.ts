@@ -1,8 +1,12 @@
-export function composit(...layers: [ImageData, ...ImageData[]]) {
-    if (new Set(layers.map((l) => l.width)).size !== 1 || new Set(layers.map((l) => l.height)).size !== 1)
-        throw new Error("Dimensions of layers to composit should all be the same.");
+import { cloneImageData } from "./cloneImageData";
 
-    const buffer = new ImageData(new Uint8ClampedArray(layers[0].data), layers[0].width, layers[0].height);
+export function composit(...layers: ImageData[]) {
+    if (!layers.length) throw new Error("at least one layer must be provided");
+
+    if (new Set(layers.map((l) => l.width)).size !== 1 || new Set(layers.map((l) => l.height)).size !== 1)
+        throw new Error("dimensions of layers to composit should all be the same");
+
+    const buffer = cloneImageData(layers[0]);
 
     for (const l of layers.slice(1)) {
         for (let i = 0; i < buffer.data.length; i += 4) {

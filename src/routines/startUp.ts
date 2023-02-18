@@ -24,6 +24,18 @@ export async function startUp() {
 
         StorageManager.set<SkinInfo>(persistedProgressKey, {
             gender: choice === chooseBoy ? "boy" : "girl",
+            hair: choice === chooseBoy ? "boy-black-hair" : "girl-black-hair",
+            body: "black-sweater",
+            arms: undefined!,
+            legs: "cargo-pants",
+            accessories: {
+                hair: [],
+                body: [],
+                arms: choice === chooseBoy ? [] : ["exposed-shoulder-strap"],
+                legs: ["white-shoes"],
+            },
+            meta:
+                choice === chooseBoy ? {} : { "exposed-shoulder-strap": { primary: "#E0E0E0", secondary: "#C7C7C7" } },
         });
 
         return StorageManager.get<SkinInfo>(persistedProgressKey)!;

@@ -1,6 +1,7 @@
+import * as THREE from "three";
+import { skinOverlayOffset as offset } from "../constants";
 import texturePositions from "./texturePositions";
 import { texturedPrism } from "./texturedPrism";
-import * as THREE from "three";
 
 export function createPlayerModel(texture: THREE.Texture) {
     const headGroup = new THREE.Object3D();
@@ -12,7 +13,7 @@ export function createPlayerModel(texture: THREE.Texture) {
     const head = texturedPrism(8, 8, 8, texture, texturePositions, "head");
     head.translateOnAxis(new THREE.Vector3(0, 1, 0), 4);
     headGroup.add(head);
-    const hat = texturedPrism(8.504, 8.504, 8.504, texture, texturePositions, "hat");
+    const hat = texturedPrism(8 + offset, 8 + offset, 8 + offset, texture, texturePositions, "hat");
     hat.translateOnAxis(new THREE.Vector3(0, 1, 0), 4);
     headGroup.add(hat);
 
@@ -23,7 +24,7 @@ export function createPlayerModel(texture: THREE.Texture) {
     bodyGroup.position.z = 0;
     const body = texturedPrism(8, 12, 4, texture, texturePositions, "body");
     bodyGroup.add(body);
-    const jacket = texturedPrism(8.504, 12.504, 4.504, texture, texturePositions, "jacket");
+    const jacket = texturedPrism(8 + offset, 12 + offset, 4 + offset, texture, texturePositions, "jacket");
     bodyGroup.add(jacket);
 
     const leftArmGroup = new THREE.Object3D();
@@ -35,7 +36,7 @@ export function createPlayerModel(texture: THREE.Texture) {
     const leftArm = texturedPrism(3, 12, 4, texture, texturePositions, "leftArm");
     leftArm.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     leftArmGroup.add(leftArm);
-    const leftSleeve = texturedPrism(3.504, 12.504, 4.504, texture, texturePositions, "leftSleeve");
+    const leftSleeve = texturedPrism(3 + offset, 12 + offset, 4 + offset, texture, texturePositions, "leftSleeve");
     leftSleeve.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     leftArmGroup.add(leftSleeve);
 
@@ -48,7 +49,7 @@ export function createPlayerModel(texture: THREE.Texture) {
     const rightArm = texturedPrism(3, 12, 4, texture, texturePositions, "rightArm");
     rightArm.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     rightArmGroup.add(rightArm);
-    const rightSleeve = texturedPrism(3.504, 12.504, 4.504, texture, texturePositions, "rightSleeve");
+    const rightSleeve = texturedPrism(3 + offset, 12 + offset, 4 + offset, texture, texturePositions, "rightSleeve");
     rightSleeve.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     rightArmGroup.add(rightSleeve);
 
@@ -61,7 +62,7 @@ export function createPlayerModel(texture: THREE.Texture) {
     const leftLeg = texturedPrism(4, 12, 4, texture, texturePositions, "leftLeg");
     leftLeg.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     leftLegGroup.add(leftLeg);
-    const leftTrousers = texturedPrism(4.504, 12.504, 4.504, texture, texturePositions, "leftTrousers");
+    const leftTrousers = texturedPrism(4 + offset, 12 + offset, 4 + offset, texture, texturePositions, "leftTrousers");
     leftTrousers.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     leftLegGroup.add(leftTrousers);
 
@@ -74,7 +75,14 @@ export function createPlayerModel(texture: THREE.Texture) {
     const rightLeg = texturedPrism(4, 12, 4, texture, texturePositions, "rightLeg");
     rightLeg.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     rightLegGroup.add(rightLeg);
-    const rightTrousers = texturedPrism(4.504, 12.504, 4.504, texture, texturePositions, "rightTrousers");
+    const rightTrousers = texturedPrism(
+        4 + offset,
+        12 + offset,
+        4 + offset,
+        texture,
+        texturePositions,
+        "rightTrousers",
+    );
     rightTrousers.translateOnAxis(new THREE.Vector3(0, 1, 0), -4);
     rightLegGroup.add(rightTrousers);
 
