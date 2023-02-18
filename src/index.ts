@@ -7,6 +7,7 @@ import { hydrateDownloadButton } from "./routines/hydrateDownloadButton";
 import { hydrateResetButton } from "./routines/hydrateResetButton";
 import { renderMadeBy } from "./routines/renderMadeBy";
 import { startUp } from "./routines/startUp";
+import { debounce } from "./utils/debounce";
 
 renderMadeBy({ timeout: 250 });
 
@@ -28,9 +29,12 @@ const skinColorInput = document.createElement("input");
 skinColorInput.type = "color";
 skinColorInput.value = skinInfo.getMetadata("skin-color");
 
-skinColorInput.addEventListener("change", () => {
-    skinInfo.setMetadata("skin-color", skinColorInput.value);
-});
+skinColorInput.addEventListener(
+    "input",
+    debounce(() => {
+        skinInfo.setMetadata("skin-color", skinColorInput.value);
+    }, 100),
+);
 
 skinColor.appendChild(skinColorInput);
 

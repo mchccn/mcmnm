@@ -15,7 +15,9 @@
         "skipLibCheck": true,
         "sourceMap": true,
         "importsNotUsedAsValues": "error",
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "types": [],
+        "lib": ["dom", "esnext", "esnext.asynciterable"]
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
