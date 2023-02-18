@@ -5,6 +5,6 @@ export function hexToRgb(hex: string) {
         hex
             .slice(1)
             .replace(/^([0-9a-fA-f])([0-9a-fA-f])([0-9a-fA-f])$/, "$1$1$2$2$3$3")
-            .match(/.{1,2}/g)!,
+            .match(/.{2}/g)!,
     ).map((x) => parseInt(x, 16));
 }

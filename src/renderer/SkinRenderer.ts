@@ -19,7 +19,7 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
 
     #animId = -1;
 
-    constructor (canvas: HTMLCanvasElement, image?: I) {
+    constructor(canvas: HTMLCanvasElement, image?: I) {
         this.canvas = canvas;
         this.image = image!;
 

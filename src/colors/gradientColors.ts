@@ -4,7 +4,7 @@ import { rgbToHex } from "./rgbToHex";
 export function gradientColors(from: string, to: string, steps: number): string[];
 export function gradientColors(from: number[], to: number[], steps: number): number[][];
 export function gradientColors(from: string | number[], to: string | number[], steps: number) {
-    if (steps < 2) throw new RangeError(`gradientColors: must have at least 2 steps, received: ${steps}`);
+    if (steps < 2) throw new RangeError(`must have at least 2 steps, received: ${steps}`);
 
     const [f, t] =
         typeof from === "string" && typeof to === "string"
