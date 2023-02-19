@@ -36,6 +36,7 @@ export async function compile(skin: SkinInfo) {
 
     return dataToImage(
         composit(
+            getImageData(await loadImage(`./assets/layers/watermark.png`)),
             ...data.map((id, i) => {
                 const layer = layers[i];
 

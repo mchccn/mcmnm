@@ -5,7 +5,7 @@ import { SkinInfoManager, TabsManager, persistedTabKey } from "./managers";
 import { SkinRenderer } from "./renderer/SkinRenderer";
 import { hydrateDownloadButton, hydrateResetButton, renderMadeBy, startUp } from "./routines";
 
-renderMadeBy({ timeout: 250 });
+renderMadeBy({ timeout: 500 });
 
 const skin = new SkinInfoManager(await startUp());
 
