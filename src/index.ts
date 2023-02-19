@@ -1,4 +1,5 @@
 import { createSkinColorComponent, createSkinHighlightComponent } from "./components";
+import { createSkinBlushComponent } from "./components/skinBlush";
 import { compile } from "./compositor/compile";
 import { SkinInfoManager, TabsManager, persistedTabKey } from "./managers";
 import { SkinRenderer } from "./renderer/SkinRenderer";
@@ -19,7 +20,7 @@ hydrateDownloadButton(renderer);
 new TabsManager(
     document.querySelector<HTMLElement>(".core-app-container")!,
     [
-        new TabsManager.Tab("head", [createSkinHighlightComponent(skin)]),
+        new TabsManager.Tab("head", [createSkinHighlightComponent(skin), createSkinBlushComponent(skin)]),
         new TabsManager.Tab("body", [createSkinColorComponent(skin)]),
         new TabsManager.Tab("arms", ["arms"]),
         new TabsManager.Tab("legs", ["legs"]),

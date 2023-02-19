@@ -1,4 +1,4 @@
-import { hexToRgb } from "../colors/hexToRgb";
+import { hexToRgb } from "../colors";
 import { cloneImageData } from "./cloneImageData";
 
 export function replaceColors(image: ImageData, map: [string | number[], string | number[]][]) {

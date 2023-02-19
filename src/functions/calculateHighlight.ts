@@ -1,6 +1,4 @@
-import { contrast } from "../colors/contrast";
-import { difference } from "../colors/difference";
-import { mixColors } from "../colors/mixColors";
+import { difference, mixColors } from "../colors";
 import type { SkinInfo } from "../types";
 
 export function calculateHighlight(skin: SkinInfo) {
@@ -9,11 +7,8 @@ export function calculateHighlight(skin: SkinInfo) {
     let highlight = skin.meta["highlight"];
 
     if (typeof highlight === "undefined" || highlight === false) highlight = skinColor;
-    else if (highlight === true) {
-        highlight = mixColors(skinColor, difference(skinColor, "#6C8785"));
 
-        if (contrast(highlight as string, skinColor) > 3) highlight = mixColors(skinColor, "#93787A");
-    }
+    if (highlight === true) highlight = mixColors(skinColor, difference(skinColor, "#6C8785"));
 
     return highlight as string;
 }

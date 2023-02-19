@@ -1,5 +1,3 @@
-import { adjustColor } from "../colors/adjustColor";
-import { difference } from "../colors/difference";
 import { calculateBlush } from "../functions/calculateBlush";
 import { calculateHighlight } from "../functions/calculateHighlight";
 import { partsPriorities, type PartName } from "../parts";
