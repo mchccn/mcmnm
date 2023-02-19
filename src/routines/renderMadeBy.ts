@@ -13,7 +13,6 @@ export async function renderMadeBy(options?: { timeout?: number }) {
         .then((res) => res.json())
         .catch(() => ({ name: undefined }));
 
-
     if (name) {
         madeBy.textContent = name;
         madeBy.href = `https://namemc.com/profile/${developerUuid}`;

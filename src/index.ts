@@ -1,5 +1,4 @@
-import { createSkinColorComponent, createSkinHighlightComponent } from "./components";
-import { createSkinBlushComponent } from "./components/skinBlush";
+import { createSkinBlushComponent, createSkinColorComponent, createSkinHighlightComponent } from "./components";
 import { compile } from "./compositor/compile";
 import { SkinInfoManager, TabsManager, persistedTabKey } from "./managers";
 import { SkinRenderer } from "./renderer/SkinRenderer";

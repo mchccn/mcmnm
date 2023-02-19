@@ -1,28 +1,31 @@
 import type { SkinInfoManager } from "../managers/SkinInfoManager";
 import { debounce } from "../utils/debounce";
+import { wrapTextInSpan } from "../utils/wrapTextInSpan";
 
 export function createSkinColorComponent(skin: SkinInfoManager) {
-    const skinColorGroup = document.createElement("div");
+    const group = document.createElement("div");
+    group.classList.add("input-group");
 
-    const skinColor = document.createElement("label");
-    skinColor.htmlFor = "skinColor";
-    skinColor.textContent = "skin color";
+    const label = document.createElement("label");
+    label.htmlFor = "skinColor";
 
-    const skinColorInput = document.createElement("input");
-    skinColorInput.name = "skinColor";
-    skinColorInput.type = "color";
-    skinColorInput.value = skin.getMetadata("skin-color");
+    label.append(wrapTextInSpan("skin color"));
 
-    skinColorInput.addEventListener(
+    const input = document.createElement("input");
+    input.name = "skinColor";
+    input.type = "color";
+    input.value = skin.getMetadata("skin-color");
+
+    input.addEventListener(
         "input",
         debounce(() => {
-            skin.setMetadata("skin-color", skinColorInput.value);
+            skin.setMetadata("skin-color", input.value);
         }, 100),
     );
 
-    skinColor.appendChild(skinColorInput);
+    label.prepend(input);
 
-    skinColorGroup.appendChild(skinColor);
+    group.append(label);
 
-    return skinColorGroup;
+    return group;
 }

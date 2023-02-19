@@ -1,18 +1,21 @@
 import { calculateHighlight } from "../functions/calculateHighlight";
 import type { SkinInfoManager } from "../managers/SkinInfoManager";
 import { debounce } from "../utils/debounce";
+import { wrapTextInSpan } from "../utils/wrapTextInSpan";
 
 export function createSkinHighlightComponent(skin: SkinInfoManager) {
-    const highlightGroup = document.createElement("div");
+    const group = document.createElement("div");
+    group.classList.add("input-group");
 
-    const highlight = document.createElement("label");
-    highlight.htmlFor = "skinHighlight";
-    highlight.textContent = "highlight";
+    const label = document.createElement("label");
+    label.htmlFor = "skinHighlight";
 
-    const highlightInput = document.createElement("select");
-    highlightInput.name = "skinHighlight";
+    label.append(wrapTextInSpan("highlight"));
 
-    highlightInput.append(
+    const input = document.createElement("select");
+    input.name = "skinHighlight";
+
+    input.append(
         ...["none", "auto", "custom"].map((text) => {
             const option = document.createElement("option");
 
@@ -25,51 +28,44 @@ export function createSkinHighlightComponent(skin: SkinInfoManager) {
 
     const initial = skin.getMetadata("highlight");
 
-    highlightInput.value =
-        typeof initial === "undefined" || initial === false ? "none" : initial === true ? "auto" : "custom";
+    input.value = typeof initial === "undefined" || initial === false ? "none" : initial === true ? "auto" : "custom";
 
-    highlightInput.addEventListener("change", () => {
-        customHighlight.style.display = highlightInput.value === "custom" ? "" : "none";
+    input.addEventListener("change", () => {
+        custom.style.display = input.value === "custom" ? "" : "none";
 
-        if (highlightInput.value === "none") {
+        if (input.value === "none") {
             return skin.setMetadata("highlight", false);
         }
 
-        if (highlightInput.value === "auto") {
+        if (input.value === "auto") {
             return skin.setMetadata("highlight", true);
         }
 
         const highlight = calculateHighlight(skin.getCopy());
 
-        customHighlightInput.value = highlight;
+        custom.value = highlight;
 
         return skin.setMetadata("highlight", highlight);
     });
 
-    highlight.appendChild(highlightInput);
+    label.append(input);
 
-    const customHighlight = document.createElement("label");
-    customHighlight.htmlFor = "skinCustomHighlight";
-    customHighlight.textContent = "custom highlight color";
+    const custom = document.createElement("input");
+    custom.name = "skinCustomHighlight";
+    custom.type = "color";
+    custom.value = skin.getMetadata("highlight");
 
-    customHighlight.style.display = typeof skin.getMetadata("highlight") === "string" ? "" : "none";
+    custom.style.display = typeof skin.getMetadata("highlight") === "string" ? "" : "none";
 
-    const customHighlightInput = document.createElement("input");
-    customHighlightInput.name = "skinCustomHighlight";
-    customHighlightInput.type = "color";
-    customHighlightInput.value = skin.getMetadata("highlight");
-
-    customHighlightInput.addEventListener(
+    custom.addEventListener(
         "input",
         debounce(() => {
-            skin.setMetadata("highlight", customHighlightInput.value);
+            skin.setMetadata("highlight", custom.value);
         }, 100),
     );
 
-    customHighlight.appendChild(customHighlightInput);
+    group.append(label);
+    group.append(custom);
 
-    highlightGroup.appendChild(highlight);
-    highlightGroup.appendChild(customHighlight);
-
-    return highlightGroup;
+    return group;
 }

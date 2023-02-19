@@ -1,18 +1,21 @@
 import { calculateBlush } from "../functions";
 import type { SkinInfoManager } from "../managers/SkinInfoManager";
 import { debounce } from "../utils/debounce";
+import { wrapTextInSpan } from "../utils/wrapTextInSpan";
 
 export function createSkinBlushComponent(skin: SkinInfoManager) {
-    const blushGroup = document.createElement("div");
+    const group = document.createElement("div");
+    group.classList.add("input-group");
 
-    const blush = document.createElement("label");
-    blush.htmlFor = "skinBlush";
-    blush.textContent = "blush";
+    const label = document.createElement("label");
+    label.htmlFor = "skinBlush";
 
-    const blushInput = document.createElement("select");
-    blushInput.name = "skinBlush";
+    label.append(wrapTextInSpan("blush"));
 
-    blushInput.append(
+    const input = document.createElement("select");
+    input.name = "skinBlush";
+
+    input.append(
         ...["none", "auto", "custom"].map((text) => {
             const option = document.createElement("option");
 
@@ -25,51 +28,44 @@ export function createSkinBlushComponent(skin: SkinInfoManager) {
 
     const initial = skin.getMetadata("blush");
 
-    blushInput.value =
-        typeof initial === "undefined" || initial === false ? "none" : initial === true ? "auto" : "custom";
+    input.value = typeof initial === "undefined" || initial === false ? "none" : initial === true ? "auto" : "custom";
 
-    blushInput.addEventListener("change", () => {
-        customBlush.style.display = blushInput.value === "custom" ? "" : "none";
+    input.addEventListener("change", () => {
+        custom.style.display = input.value === "custom" ? "" : "none";
 
-        if (blushInput.value === "none") {
+        if (input.value === "none") {
             return skin.setMetadata("blush", false);
         }
 
-        if (blushInput.value === "auto") {
+        if (input.value === "auto") {
             return skin.setMetadata("blush", true);
         }
 
         const blush = calculateBlush(skin.getCopy());
 
-        customBlushInput.value = blush;
+        custom.value = blush;
 
         return skin.setMetadata("blush", blush);
     });
 
-    blush.appendChild(blushInput);
+    label.append(input);
 
-    const customBlush = document.createElement("label");
-    customBlush.htmlFor = "skinCustomBlush";
-    customBlush.textContent = "custom blush color";
+    const custom = document.createElement("input");
+    custom.name = "skinCustomBlush";
+    custom.type = "color";
+    custom.value = skin.getMetadata("blush");
 
-    customBlush.style.display = typeof skin.getMetadata("blush") === "string" ? "" : "none";
+    custom.style.display = typeof skin.getMetadata("blush") === "string" ? "" : "none";
 
-    const customBlushInput = document.createElement("input");
-    customBlushInput.name = "skinCustomBlush";
-    customBlushInput.type = "color";
-    customBlushInput.value = skin.getMetadata("blush");
-
-    customBlushInput.addEventListener(
+    custom.addEventListener(
         "input",
         debounce(() => {
-            skin.setMetadata("blush", customBlushInput.value);
+            skin.setMetadata("blush", custom.value);
         }, 100),
     );
 
-    customBlush.appendChild(customBlushInput);
+    group.append(label);
+    group.append(custom);
 
-    blushGroup.appendChild(blush);
-    blushGroup.appendChild(customBlush);
-
-    return blushGroup;
+    return group;
 }

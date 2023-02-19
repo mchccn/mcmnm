@@ -21,6 +21,11 @@
     left: 1rem;
     right: 1rem;
 
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+
     overflow-y: scroll;
 
     width: calc(100% - 1rem - 1rem);

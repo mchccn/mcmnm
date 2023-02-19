@@ -1,0 +1,67 @@
+.tab-content-container > .input-group {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    min-height: 1.5rem;
+}
+
+.tab-content-container > .input-group > label {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    min-height: 1.5rem;
+
+    font-weight: 100;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+    user-select: none;
+}
+
+.tab-content-container > .input-group > label > span {
+    min-width: 4rem;
+}
+
+input[type="color"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    background: none;
+
+    border-radius: 4px;
+    overflow: auto;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+*:focus {
+    border-radius: 0;
+    outline: none;
+}
+
+::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+::-webkit-color-swatch {
+    border: 0;
+    border-radius: 0;
+}
+
+::-moz-color-swatch,
+::-moz-focus-inner {
+    border: 0;
+}
+
+::-moz-focus-inner {
+    padding: 0;
+}
