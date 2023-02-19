@@ -1,3 +1,5 @@
+import { select } from "./utils/select";
+
 export const partsPriorities = (
     [
         [
@@ -15,6 +17,21 @@ export const partsPriorities = (
         ["base-skin"], // base
     ] as const
 ).flat();
+
+export const hairParts = select<PartName>()("boy-black-hair", "girl-black-hair");
+export const bodyParts = select<PartName>()("black-sweater");
+export const armsParts = select<PartName>()();
+export const legsParts = select<PartName>()("cargo-pants");
+export const hairAccessoriesParts = select<PartName>()();
+export const bodyAccessoriesParts = select<PartName>()();
+export const armsAccessoriesParts = select<PartName>()("exposed-shoulder-strap");
+export const legsAccessoriesParts = select<PartName>()("white-shoes");
+export const accessoriesParts = [
+    ...hairAccessoriesParts,
+    ...bodyAccessoriesParts,
+    ...armsAccessoriesParts,
+    ...legsAccessoriesParts,
+];
 
 export type PartName = (typeof partsPriorities)[number];
 

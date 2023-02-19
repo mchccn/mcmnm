@@ -26,7 +26,7 @@ export async function startUp() {
             gender: choice === chooseBoy ? "boy" : "girl",
             hair: choice === chooseBoy ? "boy-black-hair" : "girl-black-hair",
             body: "black-sweater",
-            arms: undefined!,
+            arms: null!,
             legs: "cargo-pants",
             accessories: {
                 hair: [],

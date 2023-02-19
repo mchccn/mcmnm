@@ -1,16 +1,23 @@
-import type { PartName } from "./parts";
+import type {
+    armsAccessoriesParts,
+    armsParts,
+    bodyAccessoriesParts,
+    bodyParts,
+    hairAccessoriesParts,
+    hairParts,
+    legsAccessoriesParts,
+    legsParts,
+} from "./parts";
 import type texturePositions from "./renderer/texturePositions";
 
-type Of<T, U extends T> = Extract<T, U>;
-
-export type SkinHair = Of<PartName, "boy-black-hair" | "girl-black-hair">;
-export type SkinBody = Of<PartName, "black-sweater">;
-export type SkinArms = Of<PartName, never>;
-export type SkinLegs = Of<PartName, "cargo-pants">;
-export type SkinHairAccessories = Of<PartName, never>;
-export type SkinBodyAccessories = Of<PartName, never>;
-export type SkinArmsAccessories = Of<PartName, "exposed-shoulder-strap">;
-export type SkinLegsAccessories = Of<PartName, "white-shoes">;
+export type SkinHair = (typeof hairParts)[number];
+export type SkinBody = (typeof bodyParts)[number];
+export type SkinArms = (typeof armsParts)[number];
+export type SkinLegs = (typeof legsParts)[number];
+export type SkinHairAccessories = (typeof hairAccessoriesParts)[number];
+export type SkinBodyAccessories = (typeof bodyAccessoriesParts)[number];
+export type SkinArmsAccessories = (typeof armsAccessoriesParts)[number];
+export type SkinLegsAccessories = (typeof legsAccessoriesParts)[number];
 export type SkinAccessories = SkinHairAccessories | SkinBodyAccessories | SkinArmsAccessories | SkinLegsAccessories;
 
 export interface SkinInfo {
