@@ -6,7 +6,7 @@ export function createBodySettingsComponent(skin: SkinInfoManager) {
 
     container.classList.add("flex-col-with-gap");
 
-    container.append(createBodySkinColorComponent(skin))
+    container.append(createBodySkinColorComponent(skin));
 
     return container;
 }

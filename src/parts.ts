@@ -37,6 +37,34 @@ export type PartName = (typeof partsPriorities)[number];
 
 export const partsList = [...partsPriorities].sort() as PartName[];
 
+export enum Gender {
+    BOY = "boy",
+    GIRL = "girl",
+    NEUTRAL = "neutral",
+}
+
+export const partsGender: Record<PartName, Gender> = {
+    "boy-black-hair": Gender.BOY,
+    "girl-black-hair": Gender.GIRL,
+    "white-shoes": Gender.NEUTRAL,
+    "cargo-pants": Gender.NEUTRAL,
+    "exposed-shoulder-strap": Gender.GIRL,
+    "black-sweater": Gender.NEUTRAL,
+    "base-skin": Gender.NEUTRAL,
+};
+
+export const partsForGender = {
+    [Gender.BOY]: Object.entries(partsGender)
+        .filter(([, v]) => v === Gender.BOY)
+        .map(([k]) => k) as PartName[],
+    [Gender.GIRL]: Object.entries(partsGender)
+        .filter(([, v]) => v === Gender.GIRL)
+        .map(([k]) => k) as PartName[],
+    [Gender.NEUTRAL]: Object.entries(partsGender)
+        .filter(([, v]) => v === Gender.NEUTRAL)
+        .map(([k]) => k) as PartName[],
+};
+
 export const partsDefaultMetadata: Record<PartName, unknown> = {
     "boy-black-hair": null,
     "girl-black-hair": null,

@@ -7,7 +7,7 @@ import { loadImage } from "../compositor/loadImage";
 import { preprocess } from "../compositor/preprocess";
 import { nullSkin } from "../constants";
 import type { SkinInfoManager } from "../managers";
-import { armsAccessoriesParts, partsDefaultMetadata } from "../parts";
+import { Gender, armsAccessoriesParts, partsDefaultMetadata, partsForGender } from "../parts";
 import { SkinRenderer } from "../renderer/SkinRenderer";
 import { wrapTextInSpan } from "../utils/wrapTextInSpan";
 
@@ -36,7 +36,7 @@ export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
     });
 
     (async () => {
-        for (const partName of armsAccessoriesParts) {
+        for (const partName of armsAccessoriesParts.filter((partName) => partsForGender[Gender.NEUTRAL].includes(partName) || partsForGender[skin.get("gender")].includes(partName))) {
             const card = document.createElement("div");
             card.classList.add("layer-card");
 

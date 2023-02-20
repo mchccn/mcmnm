@@ -1,9 +1,5 @@
 import * as THREE from "three";
-import {
-    createArmsAccessoriesComponent,
-    createArmsSettingsComponent,
-    createHeadSettingsComponent
-} from "./components";
+import { createArmsAccessoriesComponent, createArmsSettingsComponent, createHeadSettingsComponent } from "./components";
 import { createBodySettingsComponent } from "./components/bodySettings";
 import { compile } from "./compositor/compile";
 import { SkinInfoManager, StorageManager, TabsManager, persistedSkinKey, persistedTabKey } from "./managers";

@@ -7,8 +7,8 @@ export function createHeadSettingsComponent(skin: SkinInfoManager) {
 
     container.classList.add("flex-col-with-gap");
 
-    container.append(createHeadHighlightComponent(skin))
-    container.append(createSkinBlushComponent(skin))
+    container.append(createHeadHighlightComponent(skin));
+    container.append(createSkinBlushComponent(skin));
 
     return container;
 }
