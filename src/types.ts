@@ -26,12 +26,10 @@ export interface SkinInfo {
     body: SkinBody;
     arms: SkinArms;
     legs: SkinLegs;
-    accessories: {
-        hair: SkinHairAccessories[];
-        body: SkinBodyAccessories[];
-        arms: SkinArmsAccessories[];
-        legs: SkinLegsAccessories[];
-    };
+    hairAccessories: SkinHairAccessories[];
+    bodyAccessories: SkinBodyAccessories[];
+    armsAccessories: SkinArmsAccessories[];
+    legsAccessories: SkinLegsAccessories[];
     meta: { [key: string]: unknown };
 }
 

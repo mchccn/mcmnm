@@ -1,4 +1,4 @@
-export const persistedProgressKey = "persistedProgress";
+export const persistedSkinKey = "persistedSkin";
 export const persistedTabKey = "persistedTab";
 
 export class StorageManager {

@@ -36,3 +36,13 @@ export const accessoriesParts = [
 export type PartName = (typeof partsPriorities)[number];
 
 export const partsList = [...partsPriorities].sort() as PartName[];
+
+export const partsDefaultMetadata: Record<PartName, unknown> = {
+    "boy-black-hair": null,
+    "girl-black-hair": null,
+    "white-shoes": null,
+    "cargo-pants": null,
+    "exposed-shoulder-strap": { "skin-color": "#FFFFFF", "exposed-shoulder-strap": true },
+    "black-sweater": null,
+    "base-skin": null,
+};

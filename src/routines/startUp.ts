@@ -1,4 +1,4 @@
-import { persistedProgressKey, StorageManager } from "../managers/StorageManager";
+import { persistedSkinKey, StorageManager } from "../managers/StorageManager";
 import type { SkinInfo } from "../types";
 import { waitForClick } from "../utils/waitForClick";
 
@@ -13,7 +13,7 @@ function hideGenderSelection(options?: { noTransition?: boolean }) {
 }
 
 export async function startUp() {
-    const progress = StorageManager.get<SkinInfo>(persistedProgressKey);
+    const progress = StorageManager.get<SkinInfo>(persistedSkinKey);
 
     if (!progress) {
         const [chooseBoy, chooseGirl] = Array.from(document.querySelectorAll(".choose-gender-card"));
@@ -22,25 +22,23 @@ export async function startUp() {
 
         hideGenderSelection();
 
-        StorageManager.set<SkinInfo>(persistedProgressKey, {
+        StorageManager.set<SkinInfo>(persistedSkinKey, {
             gender: choice === chooseBoy ? "boy" : "girl",
             hair: choice === chooseBoy ? "boy-black-hair" : "girl-black-hair",
             body: "black-sweater",
             arms: null!,
             legs: "cargo-pants",
-            accessories: {
-                hair: [],
-                body: [],
-                arms: choice === chooseBoy ? [] : ["exposed-shoulder-strap"],
-                legs: ["white-shoes"],
-            },
+            hairAccessories: [],
+            bodyAccessories: [],
+            armsAccessories: choice === chooseBoy ? [] : ["exposed-shoulder-strap"],
+            legsAccessories: ["white-shoes"],
             meta: Object.assign(
                 { "skin-color": "#FFFFFF", highlight: true },
-                choice === chooseBoy ? {} : { "exposed-shoulder-strap": { primary: "#E0E0E0", secondary: "#C7C7C7" } },
+                choice === chooseBoy ? {} : { "exposed-shoulder-strap": true },
             ),
         });
 
-        return StorageManager.get<SkinInfo>(persistedProgressKey)!;
+        return StorageManager.get<SkinInfo>(persistedSkinKey)!;
     } else {
         hideGenderSelection({ noTransition: true });
 

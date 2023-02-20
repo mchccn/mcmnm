@@ -2,17 +2,17 @@ import type { SkinInfoManager } from "../managers/SkinInfoManager";
 import { debounce } from "../utils/debounce";
 import { wrapTextInSpan } from "../utils/wrapTextInSpan";
 
-export function createSkinColorComponent(skin: SkinInfoManager) {
+export function createBodySkinColorComponent(skin: SkinInfoManager) {
     const group = document.createElement("div");
     group.classList.add("input-group");
 
     const label = document.createElement("label");
-    label.htmlFor = "skinColor";
+    label.htmlFor = "bodySkinColor";
 
     label.append(wrapTextInSpan("skin color"));
 
     const input = document.createElement("input");
-    input.name = "skinColor";
+    input.name = "bodySkinColor";
     input.type = "color";
     input.value = skin.getMetadata("skin-color");
 

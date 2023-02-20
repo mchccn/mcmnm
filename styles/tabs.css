@@ -1,4 +1,54 @@
-.tab-content-container > .input-group {
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+}
+
+.tab-content-container > h1 {
+    margin: 0;
+
+    font-weight: 100;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.layer-card {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid #dedede;
+    border-radius: 2px;
+
+    width: 175px;
+
+    cursor: pointer;
+
+    transition-property: box-shadow, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.layer-card.card-selected {
+    border: 2px solid #111111;
+}
+
+.layer-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.layer-card > span {
+    text-align: center;
+
+    font-size: 0.75rem;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+    user-select: none;
+
+    padding: 0.5rem;
+}
+
+.tab-content-container .input-group {
     display: flex;
     align-items: center;
 
@@ -7,7 +57,7 @@
     min-height: 1.5rem;
 }
 
-.tab-content-container > .input-group > label {
+.tab-content-container .input-group > label {
     display: flex;
     align-items: center;
 
@@ -21,7 +71,7 @@
     user-select: none;
 }
 
-.tab-content-container > .input-group > label > span {
+.tab-content-container .input-group > label > span {
     min-width: 4rem;
 }
 
@@ -64,4 +114,10 @@ input[type="color"] {
 
 ::-moz-focus-inner {
     padding: 0;
+}
+
+@media (max-width: 1024px) {
+    .grid-container {
+        gap: 0.75rem;
+    }
 }

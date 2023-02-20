@@ -1,19 +1,19 @@
-import { calculateBlush } from "../functions";
+import { calculateHighlight } from "../functions/calculateHighlight";
 import type { SkinInfoManager } from "../managers/SkinInfoManager";
 import { debounce } from "../utils/debounce";
 import { wrapTextInSpan } from "../utils/wrapTextInSpan";
 
-export function createSkinBlushComponent(skin: SkinInfoManager) {
+export function createHeadHighlightComponent(skin: SkinInfoManager) {
     const group = document.createElement("div");
     group.classList.add("input-group");
 
     const label = document.createElement("label");
-    label.htmlFor = "skinBlush";
+    label.htmlFor = "headHighlight";
 
-    label.append(wrapTextInSpan("blush"));
+    label.append(wrapTextInSpan("highlight"));
 
     const input = document.createElement("select");
-    input.name = "skinBlush";
+    input.name = "headHighlight";
 
     input.append(
         ...["none", "auto", "custom"].map((text) => {
@@ -26,7 +26,7 @@ export function createSkinBlushComponent(skin: SkinInfoManager) {
         }),
     );
 
-    const initial = skin.getMetadata("blush");
+    const initial = skin.getMetadata("highlight");
 
     input.value = typeof initial === "undefined" || initial === false ? "none" : initial === true ? "auto" : "custom";
 
@@ -34,33 +34,33 @@ export function createSkinBlushComponent(skin: SkinInfoManager) {
         custom.style.display = input.value === "custom" ? "" : "none";
 
         if (input.value === "none") {
-            return skin.setMetadata("blush", false);
+            return skin.setMetadata("highlight", false);
         }
 
         if (input.value === "auto") {
-            return skin.setMetadata("blush", true);
+            return skin.setMetadata("highlight", true);
         }
 
-        const blush = calculateBlush(skin.getCopy());
+        const highlight = calculateHighlight(skin.getCopy());
 
-        custom.value = blush;
+        custom.value = highlight;
 
-        return skin.setMetadata("blush", blush);
+        return skin.setMetadata("highlight", highlight);
     });
 
     label.append(input);
 
     const custom = document.createElement("input");
-    custom.name = "skinCustomBlush";
+    custom.name = "headCustomHighlight";
     custom.type = "color";
-    custom.value = skin.getMetadata("blush");
+    custom.value = skin.getMetadata("highlight");
 
-    custom.style.display = typeof skin.getMetadata("blush") === "string" ? "" : "none";
+    custom.style.display = typeof skin.getMetadata("highlight") === "string" ? "" : "none";
 
     custom.addEventListener(
         "input",
         debounce(() => {
-            skin.setMetadata("blush", custom.value);
+            skin.setMetadata("highlight", custom.value);
         }, 100),
     );
 

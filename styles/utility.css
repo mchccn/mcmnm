@@ -1,3 +1,10 @@
 .flip-x-axis {
     transform: scaleX(-1);
 }
+
+.flex-col-with-gap {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}

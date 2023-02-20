@@ -1,8 +1,9 @@
-import { persistedProgressKey, StorageManager } from "../managers/StorageManager";
+import { persistedSkinKey, persistedTabKey, StorageManager } from "../managers/StorageManager";
 
 export function hydrateResetButton() {
     document.querySelector(".skin-reset-button")!.addEventListener("click", () => {
-        StorageManager.delete(persistedProgressKey);
+        StorageManager.delete(persistedSkinKey);
+        StorageManager.delete(persistedTabKey);
 
         location.reload();
     });

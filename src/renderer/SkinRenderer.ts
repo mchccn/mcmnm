@@ -19,7 +19,23 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
 
     #animId = -1;
 
-    constructor(canvas: HTMLCanvasElement, image?: I) {
+    #WEBGL_lose_context: WEBGL_lose_context | null;
+
+    constructor({
+        width,
+        height,
+        canvas,
+        configure,
+        backgroundColor,
+        image,
+    }: {
+        width: number;
+        height: number;
+        canvas: HTMLCanvasElement;
+        configure?: (this: SkinRenderer<I>) => void;
+        backgroundColor?: THREE.ColorRepresentation;
+        image?: I;
+    }) {
         this.canvas = canvas;
         this.image = image!;
 
@@ -30,23 +46,16 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
         this.renderer.setPixelRatio(window.devicePixelRatio);
 
         this.controls = new OrbitControls(this.camera, this.canvas);
-        this.controls.enableDamping = false;
-        this.controls.enablePan = false;
-        this.controls.minDistance = 8;
-        this.controls.maxDistance = 128;
-        this.controls.target = new THREE.Vector3(0, 16, 0);
 
-        this.renderer.setSize(300, 400);
+        this.renderer.setSize(width, height);
 
         this.scene = new THREE.Scene();
 
-        this.scene.background = new THREE.Color(0xfafafa);
+        this.scene.background = new THREE.Color(backgroundColor ?? 0xfafafa);
 
-        this.camera.position.x = 0;
-        this.camera.position.y = 16;
-        this.camera.position.z = 32;
+        configure?.call(this);
 
-        this.camera.lookAt(new THREE.Vector3(0, 16, 0));
+        this.#WEBGL_lose_context = this.renderer.getContext().getExtension("WEBGL_lose_context");
     }
 
     async use(src: string) {
@@ -67,19 +76,40 @@ export class SkinRenderer<I extends HTMLImageElement | undefined = undefined> {
     }
 
     render() {
-        this.#animId = requestAnimationFrame(this.render.bind(this));
-
         this.renderer.render(this.scene, this.camera);
+
+        this.controls.update();
     }
 
     start() {
         this.render();
+
+        this.#animId = requestAnimationFrame(this.start.bind(this));
     }
 
     stop() {
         cancelAnimationFrame(this.#animId);
 
         this.#animId = -1;
+    }
+
+    loseContext() {
+        this.#WEBGL_lose_context?.loseContext();
+    }
+
+    restoreContext() {
+        this.#WEBGL_lose_context?.restoreContext();
+    }
+
+    getImageData() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d")!;
+        canvas.width = this.renderer.domElement.width;
+        canvas.height = this.renderer.domElement.height;
+
+        ctx.drawImage(this.renderer.domElement, 0, 0);
+
+        return ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
 
     get model() {
