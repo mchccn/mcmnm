@@ -65,7 +65,7 @@ export const partsForGender = {
         .map(([k]) => k) as PartName[],
 };
 
-export const partsDefaultMetadata: Record<PartName, unknown> = {
+export const partsDefaultMetadata: Record<PartName, Record<string, unknown> | null> = {
     "boy-black-hair": null,
     "girl-black-hair": null,
     "shoes-1": { "shoes-1": "#FFFFFF" },

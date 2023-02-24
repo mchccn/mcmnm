@@ -2,11 +2,11 @@ import * as THREE from "three";
 import { composit, dataToImage, getImageData, layerCache, loadImage, preprocess } from "../../compositor";
 import { nullSkin } from "../../constants";
 import type { SkinInfoManager } from "../../managers";
-import { Gender, armsAccessoriesParts, partsDefaultMetadata, partsForGender } from "../../parts";
+import { Gender, legsAccessoriesParts, partsDefaultMetadata, partsForGender } from "../../parts";
 import { SkinRenderer } from "../../renderer/SkinRenderer";
 import { wrapTextInSpan } from "../../utils";
 
-export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
+export function createLegsAccessoriesComponent(skin: SkinInfoManager) {
     const container = document.createElement("div");
     container.classList.add("grid-container");
 
@@ -31,7 +31,7 @@ export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
     });
 
     (async () => {
-        for (const partName of armsAccessoriesParts.filter(
+        for (const partName of legsAccessoriesParts.filter(
             (partName) =>
                 partsForGender[Gender.NEUTRAL].includes(partName) ||
                 partsForGender[skin.get("gender")].includes(partName),
@@ -39,21 +39,21 @@ export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
             const card = document.createElement("div");
             card.classList.add("layer-card");
 
-            card.classList.toggle("card-selected", skin.get("armsAccessories").includes(partName));
+            card.classList.toggle("card-selected", skin.get("legsAccessories").includes(partName));
 
             skin.onMetaChange(partName, () => {
-                card.classList.toggle("card-selected", skin.get("armsAccessories").includes(partName));
+                card.classList.toggle("card-selected", skin.get("legsAccessories").includes(partName));
             });
 
             card.addEventListener("click", () => {
-                const accessories = skin.get("armsAccessories");
+                const accessories = skin.get("legsAccessories");
 
                 if (accessories.includes(partName)) {
                     accessories.splice(accessories.indexOf(partName), 1);
 
                     skin.deleteMetadata(partName);
 
-                    skin.set("armsAccessories", accessories);
+                    skin.set("legsAccessories", accessories);
                 } else {
                     accessories.push(partName);
 
@@ -62,7 +62,7 @@ export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
                             skin.setMetadata(key, partsDefaultMetadata[partName]![key]);
                     }
 
-                    skin.set("armsAccessories", accessories);
+                    skin.set("legsAccessories", accessories);
                 }
             });
 

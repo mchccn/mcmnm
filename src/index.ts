@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { createArmsAccessoriesComponent, createArmsSettingsComponent, createHeadSettingsComponent } from "./components";
+import { createArmsAccessoriesComponent, createArmsSettingsComponent, createHeadSettingsComponent, createLegsAccessoriesComponent, createLegsSettingsComponent, } from "./components";
 import { createBodySettingsComponent } from "./components/body/bodySettings";
 import { compile } from "./compositor/compile";
 import { SkinInfoManager, StorageManager, TabsManager, persistedSkinKey, persistedTabKey } from "./managers";
@@ -50,7 +50,12 @@ new TabsManager(
             html`<h1>accessories</h1>`,
             createArmsAccessoriesComponent(skin),
         ]),
-        new TabsManager.Tab("legs", []),
+        new TabsManager.Tab("legs", [
+            html`<h1>settings</h1>`,
+            createLegsSettingsComponent(skin),
+            html`<h1>accessories</h1>`,
+            createLegsAccessoriesComponent(skin),
+        ]),
     ],
     { persistedWithKey: persistedTabKey },
 );
