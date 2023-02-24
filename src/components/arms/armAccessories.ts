@@ -1,15 +1,10 @@
 import * as THREE from "three";
-import { layerCache } from "../compositor/compile";
-import { composit } from "../compositor/composit";
-import { dataToImage } from "../compositor/dataToImage";
-import { getImageData } from "../compositor/getImageData";
-import { loadImage } from "../compositor/loadImage";
-import { preprocess } from "../compositor/preprocess";
-import { nullSkin } from "../constants";
-import type { SkinInfoManager } from "../managers";
-import { Gender, armsAccessoriesParts, partsDefaultMetadata, partsForGender } from "../parts";
-import { SkinRenderer } from "../renderer/SkinRenderer";
-import { wrapTextInSpan } from "../utils/wrapTextInSpan";
+import { composit, dataToImage, getImageData, layerCache, loadImage, preprocess } from "../../compositor";
+import { nullSkin } from "../../constants";
+import type { SkinInfoManager } from "../../managers";
+import { Gender, armsAccessoriesParts, partsDefaultMetadata, partsForGender } from "../../parts";
+import { SkinRenderer } from "../../renderer/SkinRenderer";
+import { wrapTextInSpan } from "../../utils";
 
 export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
     const container = document.createElement("div");
@@ -36,7 +31,11 @@ export function createArmsAccessoriesComponent(skin: SkinInfoManager) {
     });
 
     (async () => {
-        for (const partName of armsAccessoriesParts.filter((partName) => partsForGender[Gender.NEUTRAL].includes(partName) || partsForGender[skin.get("gender")].includes(partName))) {
+        for (const partName of armsAccessoriesParts.filter(
+            (partName) =>
+                partsForGender[Gender.NEUTRAL].includes(partName) ||
+                partsForGender[skin.get("gender")].includes(partName),
+        )) {
             const card = document.createElement("div");
             card.classList.add("layer-card");
 

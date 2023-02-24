@@ -1,4 +1,4 @@
-import type { SkinInfoManager } from "../managers";
+import type { SkinInfoManager } from "../../managers";
 import { createSkinBlushComponent } from "./headBlush";
 import { createHeadHighlightComponent } from "./headHighlight";
 

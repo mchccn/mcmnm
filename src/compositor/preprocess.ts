@@ -1,29 +1,12 @@
-import { calculateBlush, calculateExposedShoulderStrap, calculateHighlight } from "../functions";
 import type { PartName } from "../parts";
 import type { SkinInfo } from "../types";
-import { replaceColors } from "./replaceColors";
 
-export function preprocess(skin: SkinInfo, id: ImageData, layer: PartName) {
-    if (layer === "base-skin") {
-        const skinColor = skin.meta["skin-color"] as string;
-        const highlight = calculateHighlight(skin);
-        const blush = calculateBlush(skin);
+export const preprocessors = new Map<PartName, (skin: SkinInfo, data: ImageData) => ImageData>();
 
-        return replaceColors(id, [
-            ["#FF0000", skinColor],
-            ["#00FF00", highlight],
-            ["#0000FF", blush],
-        ]);
-    }
+export function preprocess(skin: SkinInfo, data: ImageData, layer: PartName) {
+    const preprocessor = preprocessors.get(layer);
 
-    if (layer === "exposed-shoulder-strap") {
-        const { skinColor, strapColor } = calculateExposedShoulderStrap(skin);
+    if (!preprocessor) return data;
 
-        return replaceColors(id, [
-            ["#FF0000", skinColor],
-            ["#00FF00", strapColor],
-        ]);
-    }
-
-    return id;
+    return preprocessor.call(undefined, skin, data);
 }

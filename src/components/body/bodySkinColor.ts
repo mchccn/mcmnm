@@ -1,6 +1,5 @@
-import type { SkinInfoManager } from "../managers/SkinInfoManager";
-import { debounce } from "../utils/debounce";
-import { wrapTextInSpan } from "../utils/wrapTextInSpan";
+import type { SkinInfoManager } from "../../managers";
+import { debounce, wrapTextInSpan } from "../../utils";
 
 export function createBodySkinColorComponent(skin: SkinInfoManager) {
     const group = document.createElement("div");

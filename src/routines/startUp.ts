@@ -31,9 +31,9 @@ export async function startUp() {
             hairAccessories: [],
             bodyAccessories: [],
             armsAccessories: choice === chooseBoy ? [] : ["exposed-shoulder-strap"],
-            legsAccessories: ["white-shoes"],
+            legsAccessories: ["shoes-1"],
             meta: Object.assign(
-                { "skin-color": "#FFFFFF", highlight: true },
+                { "skin-color": "#FFFFFF", highlight: true, "shoes-1": "#FFFFFF" },
                 choice === chooseBoy ? {} : { "exposed-shoulder-strap": true },
             ),
         });

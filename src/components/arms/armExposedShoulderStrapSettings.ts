@@ -1,7 +1,6 @@
-import { calculateExposedShoulderStrap } from "../functions";
-import type { SkinInfoManager } from "../managers";
-import { debounce } from "../utils/debounce";
-import { wrapTextInSpan } from "../utils/wrapTextInSpan";
+import { calculateExposedShoulderStrap } from "../../functions";
+import type { SkinInfoManager } from "../../managers";
+import { debounce, wrapTextInSpan } from "../../utils";
 
 export function createArmExposedShoulderStrapSettings(skin: SkinInfoManager) {
     const group = document.createElement("div");

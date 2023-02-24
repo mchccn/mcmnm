@@ -1,4 +1,4 @@
-import type { SkinInfoManager } from "../managers";
+import type { SkinInfoManager } from "../../managers";
 import { createBodySkinColorComponent } from "./bodySkinColor";
 
 export function createBodySettingsComponent(skin: SkinInfoManager) {

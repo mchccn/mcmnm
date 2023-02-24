@@ -7,7 +7,7 @@ export const partsPriorities = (
             "girl-black-hair", // hair goes over head
         ],
 
-        ["white-shoes"], // shoes should go over pants
+        ["shoes-1"], // shoes should go over pants
 
         ["cargo-pants"], // needs to cover waist
 
@@ -25,7 +25,7 @@ export const legsParts = select<PartName>()("cargo-pants");
 export const hairAccessoriesParts = select<PartName>()();
 export const bodyAccessoriesParts = select<PartName>()();
 export const armsAccessoriesParts = select<PartName>()("exposed-shoulder-strap");
-export const legsAccessoriesParts = select<PartName>()("white-shoes");
+export const legsAccessoriesParts = select<PartName>()("shoes-1");
 export const accessoriesParts = [
     ...hairAccessoriesParts,
     ...bodyAccessoriesParts,
@@ -46,7 +46,7 @@ export enum Gender {
 export const partsGender: Record<PartName, Gender> = {
     "boy-black-hair": Gender.BOY,
     "girl-black-hair": Gender.GIRL,
-    "white-shoes": Gender.NEUTRAL,
+    "shoes-1": Gender.NEUTRAL,
     "cargo-pants": Gender.NEUTRAL,
     "exposed-shoulder-strap": Gender.GIRL,
     "black-sweater": Gender.NEUTRAL,
@@ -68,7 +68,7 @@ export const partsForGender = {
 export const partsDefaultMetadata: Record<PartName, unknown> = {
     "boy-black-hair": null,
     "girl-black-hair": null,
-    "white-shoes": null,
+    "shoes-1": { "shoes-1": "#FFFFFF" },
     "cargo-pants": null,
     "exposed-shoulder-strap": { "skin-color": "#FFFFFF", "exposed-shoulder-strap": true },
     "black-sweater": null,

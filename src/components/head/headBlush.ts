@@ -1,7 +1,6 @@
-import { calculateBlush } from "../functions";
-import type { SkinInfoManager } from "../managers/SkinInfoManager";
-import { debounce } from "../utils/debounce";
-import { wrapTextInSpan } from "../utils/wrapTextInSpan";
+import { calculateBlush } from "../../functions";
+import type { SkinInfoManager } from "../../managers";
+import { debounce, wrapTextInSpan } from "../../utils";
 
 export function createSkinBlushComponent(skin: SkinInfoManager) {
     const group = document.createElement("div");

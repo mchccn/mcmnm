@@ -1,7 +1,6 @@
-import { calculateHighlight } from "../functions/calculateHighlight";
-import type { SkinInfoManager } from "../managers/SkinInfoManager";
-import { debounce } from "../utils/debounce";
-import { wrapTextInSpan } from "../utils/wrapTextInSpan";
+import { calculateHighlight } from "../../functions";
+import type { SkinInfoManager } from "../../managers";
+import { debounce, wrapTextInSpan } from "../../utils";
 
 export function createHeadHighlightComponent(skin: SkinInfoManager) {
     const group = document.createElement("div");

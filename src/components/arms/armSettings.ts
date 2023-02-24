@@ -1,5 +1,5 @@
-import type { SkinInfoManager } from "../managers";
-import type { SkinArmsAccessories, SkinInfo } from "../types";
+import type { SkinInfoManager } from "../../managers";
+import type { SkinArmsAccessories, SkinInfo } from "../../types";
 import { createArmExposedShoulderStrapSettings } from "./armExposedShoulderStrapSettings";
 
 export function createArmsSettingsComponent(skin: SkinInfoManager) {
